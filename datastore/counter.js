@@ -38,24 +38,22 @@ const writeCounter = (count, callback) => {
 
 // Public API - Fix this function //////////////////////////////////////////////
 
-exports.getNextUniqueId = () => {
+exports.getNextUniqueId = (callback) => {
 
-  var readCallback = 
 
   readCounter(function(err, counter) {
     if(err) {
-      console.log('Unknown Error');
-      return;
+      callback(err);
     } else {
-      return counter;
+      writeCounter(++counter, callback);
     }
   });
-
-
 
   counter = counter + 1;
 
   var counterString = zeroPaddedNumber(counter);
+  
+  
 };
 
 
@@ -69,4 +67,4 @@ exports.getNextUniqueId = () => {
 
 // Configuration -- DO NOT MODIFY //////////////////////////////////////////////
 
-exports.counterFile = path.join(__dirname, 'counter.txt');
+exports.counterFile = path.join(__dirname, 'counter.txt');//this is just a file path that we will export '00001'

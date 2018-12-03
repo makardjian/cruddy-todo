@@ -18,7 +18,7 @@ exports.create = (text, callback) => {
     }
   });
 
-  callback(null, { id, text });
+  // callback(null, { id, text });
 };
 
 exports.readAll = (callback) => {

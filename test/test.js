@@ -43,11 +43,13 @@ describe('getNextUniqueId', () => {
   });
 
   it('should give the next id based on the count in the file', (done) => {
-    fs.writeFileSync(counter.counterFile, '00025');
+    fs.writeFileSync(counter.counterFile, '00025'); //takes a filePath and a unique ID.
     counter.getNextUniqueId((err, id) => {
+      console.log(id, "#########################")
       expect(id).to.equal('00026');
       done();
     });
+    //now we know that getNextUniqueID's callback will have to increment the counter ID
   });
 
   it('should update the counter file with the next value', (done) => {
