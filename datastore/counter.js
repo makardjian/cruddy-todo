@@ -45,24 +45,16 @@ exports.getNextUniqueId = (callback) => {
     if(err) {
       callback(err);
     } else {
-      writeCounter(++counter, callback);
+      counter += 1;
+      writeCounter(counter, callback);
     }
   });
-
-  counter = counter + 1;
-
-  var counterString = zeroPaddedNumber(counter);
   
   
 };
 
 
 //counterFile is the file where the data is getting exported to.
-
-//what do I need to know in order to get the next UniqueID?
-  //I need to know the last ID that was issued on a POST request.
-    //counterString will represent the previous counter cast to a string. 
-    //
 
 
 // Configuration -- DO NOT MODIFY //////////////////////////////////////////////

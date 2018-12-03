@@ -11,10 +11,10 @@ exports.create = (text, callback) => {
 
   counter.getNextUniqueId(function(err, counter) {
     if(err) {
-      callback(err)
+      callback(err);
     } else {
       items[counter] = text;
-      callback(null, {id: counter, text: text})
+      callback(null, {id: counter, text: text});
     }
   });
 
