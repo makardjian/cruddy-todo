@@ -39,10 +39,32 @@ const writeCounter = (count, callback) => {
 // Public API - Fix this function //////////////////////////////////////////////
 
 exports.getNextUniqueId = () => {
+
+  var readCallback = 
+
+  readCounter(function(err, counter) {
+    if(err) {
+      console.log('Unknown Error');
+      return;
+    } else {
+      return counter;
+    }
+  });
+
+
+
   counter = counter + 1;
-  return zeroPaddedNumber(counter);
+
+  var counterString = zeroPaddedNumber(counter);
 };
 
+
+//counterFile is the file where the data is getting exported to.
+
+//what do I need to know in order to get the next UniqueID?
+  //I need to know the last ID that was issued on a POST request.
+    //counterString will represent the previous counter cast to a string. 
+    //
 
 
 // Configuration -- DO NOT MODIFY //////////////////////////////////////////////
