@@ -11,14 +11,32 @@ exports.create = (text, callback) => {
 
   counter.getNextUniqueId(function(err, counter) {
     if(err) {
+      console.log('error$$$$$$$$$$$$$$$$$$$$$');
       callback(err);
     } else {
       items[counter] = text;
-      callback(null, {id: counter, text: text});
+      
+      var fileName = counter + '.txt';
+      
+      var obj = {id: counter, text: text};
+      
+      fs.writeFile(path.join(exports.dataDir, fileName), text, (err) => {
+        if (err) {
+          throw (err);
+        } else {
+          callback(null, obj);
+        }
+      });
     }
   });
+  
+  
+  
+  
+  
 
-  // callback(null, { id, text });
+  
+  
 };
 
 exports.readAll = (callback) => {
