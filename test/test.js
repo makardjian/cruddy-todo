@@ -70,7 +70,6 @@ describe('todos', () => {
     it('should create a new file for each todo', (done) => {
       todos.create('todo1', (err, data) => { //text is going to be 'todo1'
         const todoCount = fs.readdirSync(todos.dataDir).length;
-        // console.log(todoCount, 'TODO COUNT')
         expect(todoCount).to.equal(1);//every msg needs to be a file.
         todos.create('todo2', (err, data) => {
           expect(fs.readdirSync(todos.dataDir)).to.have.lengthOf(2);
@@ -112,6 +111,7 @@ describe('todos', () => {
       todos.readAll((err, todoList) => {
         expect(err).to.be.null;
         expect(todoList.length).to.equal(0);
+        // console.log(todoList);
         done();
       });
     });
@@ -121,8 +121,8 @@ describe('todos', () => {
       const todo1text = 'todo 1';
       const todo2text = 'todo 2';
       const expectedTodoList = [{ id: '00001', text: '00001' }, { id: '00002', text: '00002' }];
-      todos.create(todo1text, (err, todo) => {
-        todos.create(todo2text, (err, todo) => {
+        todos.create(todo1text, (err, todo) => {
+          todos.create(todo2text, (err, todo) => {
           todos.readAll((err, todoList) => {
             expect(todoList).to.have.lengthOf(2);
             expect(todoList).to.deep.include.members(expectedTodoList, 'NOTE: Text field should use the Id initially');
@@ -144,7 +144,7 @@ describe('todos', () => {
 
     it('should find a todo by id', (done) => {
       const todoText = 'buy chocolate';
-      todos.create(todoText, (err, createdTodo) => {
+      todos.create(todoText, (err, createdTodo) => { // how does createdToDo get created?
         const id = createdTodo.id;
         todos.readOne(id, (err, readTodo) => {
           expect(readTodo).to.deep.equal({ id, text: todoText });
@@ -196,6 +196,7 @@ describe('todos', () => {
     it('should not change the counter', (done) => {
       todos.delete('00001', (err) => {
         const counterFileContents = fs.readFileSync(counter.counterFile).toString();
+        console.log(counterFileContents, 'counterFileContents')
         expect(counterFileContents).to.equal('00001');
         done();
       });
