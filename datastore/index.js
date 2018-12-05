@@ -53,12 +53,10 @@ exports.readAll = (callback) => {
             return {id: target, text: body}; 
           });
       });
-      Promise.all(data).then((items, reject) => {
-        console.log(items, 'itemssssssssssssssss');
+      Promise.all(data).then((items) => {
         return callback(null, items);
       });
     });
-  
 };
 
 
@@ -141,6 +139,8 @@ exports.delete = (id, callback) => {
 // Config+Initialization code -- DO NOT MODIFY /////////////////////////////////
 
 exports.dataDir = path.join(__dirname, 'data');
+console.log(__dirname, 'dirnameeeeeee');
+console.log(exports.dataDir, 'joineddddddd');
 
 exports.initialize = () => {
   if (!fs.existsSync(exports.dataDir)) {
